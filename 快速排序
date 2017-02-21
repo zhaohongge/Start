@@ -1,0 +1,78 @@
+package HelloWorld;
+
+import java.util.Arrays;
+
+/**
+ * @author:GHT
+ * @version 创建时间：2017年2月20日 下午1:34:17
+ */
+public class sortForJava {
+	public static void sort(int[] a, int start, int end) {//特别要非常小心1：递归的结束条件，2：数组的溢出，因为存在++、--就必须要清楚到哪里结束，值才正常。
+		if(start<end){
+		int temp = 0;
+		int high = end;
+		int low = start;
+		int flag = a[start];
+		System.out.println(low+" "+end);
+		if (high > low&&end>0) {
+			while (high > low) {
+				while (a[high] >= flag && high > low) {
+					high--;  
+				}
+				if (high > low) {
+					temp = a[low];
+					a[low] = a[high];
+					a[high] = temp;
+					low++;
+				} else {
+					break;
+				}
+				while (a[low] <= flag && high > low) {
+					low++;
+				}
+				if (high > low) {
+					temp = a[low];
+					a[low] = a[high];
+					a[high] = temp;
+					high--;
+				} else {
+					break;
+				}
+			}
+			System.out.println(Arrays.toString(a));
+			a[low] = flag;
+			sort(a, start, low - 1);
+			sort(a, low + 1, end);
+		}else{
+			return;
+		}
+	}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] array1 = new int[]{23,12,45,6,7,897,23,23,23,23,23,555};
+//		 for (int i = 0; i < array1.length; i++) {
+//		 array1[i] = (int) (Math.random()*100);
+//		 }
+		System.out.println(Arrays.toString(array1));
+		sort(array1, 0, 11);
+		System.out.println(Arrays.toString(array1));
+		// 冒泡排序
+		// for (int i =array1.length-1 ; i >0; i--) {
+		// for (int j = 0; j <i; j++) {
+		// if(array1[j]>array1[j+1]){
+		// int temp = 0;
+		// temp = array1[j];
+		// array1[j] = array1[j+1];
+		// array1[j+1] = temp;
+		//
+		// }
+		// }
+		// System.out.println(Arrays.toString(array1));
+		// }
+		for (int i = 0; i < array1.length; i++) {
+			System.out.print(" " + array1[i]);
+		}
+	}
+	
+}
